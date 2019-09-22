@@ -17,9 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         DatabaseManager().configureRealm()
-        WordsManager().downloadWords { (isSuccess) in
-            print("words download result : \(isSuccess)")
-        }
+        
         return true
     }
 }
