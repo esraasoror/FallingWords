@@ -130,20 +130,12 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zd-hv-NAz">
-                                <rect key="frame" x="57" y="654" width="300" height="60"/>
+                                <rect key="frame" x="0.0" y="654" width="414" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="FpM-Oa-RAP"/>
-                                    <constraint firstAttribute="width" constant="300" id="TOs-B5-yUL"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="46"/>
+                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="35"/>
                                 <color key="textColor" red="1" green="0.41539821040000002" blue="0.10670042189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Spanish" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfh-dC-J2m">
-                                <rect key="frame" x="113" y="185" width="103" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                <color key="textColor" red="0.11101955905058725" green="0.38115726902397712" blue="0.82407707253886009" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5M-Hk-IOV">
@@ -178,18 +170,25 @@
                             <constraint firstItem="n5M-Hk-IOV" firstAttribute="top" secondItem="Clu-Lc-IMs" secondAttribute="top" constant="20" id="Ow8-po-4DF"/>
                             <constraint firstItem="h19-xD-jtJ" firstAttribute="leading" secondItem="Clu-Lc-IMs" secondAttribute="leading" constant="20" id="PNh-zf-mOv"/>
                             <constraint firstItem="Clu-Lc-IMs" firstAttribute="trailing" secondItem="Sly-vI-NoH" secondAttribute="trailing" constant="20" id="RFw-bx-cTz"/>
+                            <constraint firstItem="9Zd-hv-NAz" firstAttribute="leading" secondItem="Clu-Lc-IMs" secondAttribute="leading" id="TfX-sg-Nk4"/>
                             <constraint firstItem="9Zd-hv-NAz" firstAttribute="centerX" secondItem="N1N-qg-VFw" secondAttribute="centerX" id="fFq-I4-svN"/>
                             <constraint firstAttribute="bottom" secondItem="yz1-a5-2KK" secondAttribute="bottom" id="fny-RL-RTX"/>
+                            <constraint firstItem="Clu-Lc-IMs" firstAttribute="trailing" secondItem="9Zd-hv-NAz" secondAttribute="trailing" id="gKL-t5-WFJ"/>
                             <constraint firstItem="yz1-a5-2KK" firstAttribute="top" secondItem="9Zd-hv-NAz" secondAttribute="bottom" constant="5" id="hOF-CG-KKV"/>
                             <constraint firstItem="yz1-a5-2KK" firstAttribute="trailing" secondItem="Clu-Lc-IMs" secondAttribute="trailing" id="mXx-iv-LVD"/>
                             <constraint firstItem="yz1-a5-2KK" firstAttribute="leading" secondItem="Clu-Lc-IMs" secondAttribute="leading" id="o0d-vp-Tmc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Clu-Lc-IMs"/>
                     </view>
+                    <connections>
+                        <outlet property="englishLabel" destination="9Zd-hv-NAz" id="0En-Oe-8yi"/>
+                        <outlet property="scoreLabel" destination="h19-xD-jtJ" id="oTs-tn-yYF"/>
+                        <outlet property="timerLabel" destination="n5M-Hk-IOV" id="TMM-I3-I7s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKf-59-cyt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1449" y="21"/>
+            <point key="canvasLocation" x="1447.8260869565217" y="20.758928571428569"/>
         </scene>
     </scenes>
     <resources>

@@ -23,8 +23,9 @@ class DatabaseManager: NSObject {
             // Set the new schema version. This must be greater than the previously used
             schemaVersion: 1,
             // Set the block when opening a Realm with a schema version lower than the one set above
-            migrationBlock: nil
-        )
+            migrationBlock: { migration, oldSchemaVersion in
+                
+        })
         Realm.Configuration.defaultConfiguration = config
     }
     

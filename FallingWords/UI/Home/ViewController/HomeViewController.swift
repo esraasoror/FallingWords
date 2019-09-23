@@ -39,5 +39,14 @@ class HomeViewController: UIViewController {
         level3Button.layer.borderWidth = 1
         level3Button.layer.borderColor = UIColor.black.cgColor
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "level1" {
+            guard let viewController = segue.destination as? GameViewController else {
+                return
+            }
+            viewController.viewModel = GameViewModel(withLevel: .level1)
+        }
+    }
 }
 
