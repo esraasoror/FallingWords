@@ -28,6 +28,7 @@
 		80CEBA922338276E00FE10C6 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CEBA912338276E00FE10C6 /* GameViewModel.swift */; };
 		80CEBA99233839BF00FE10C6 /* matching.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 80CEBA95233839BF00FE10C6 /* matching.mp3 */; };
 		80CEBA9A233839BF00FE10C6 /* error.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 80CEBA96233839BF00FE10C6 /* error.mp3 */; };
+		80CEBA9D23385F0100FE10C6 /* TaDa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 80CEBA9C23385F0100FE10C6 /* TaDa.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		80CEBA912338276E00FE10C6 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		80CEBA95233839BF00FE10C6 /* matching.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = matching.mp3; sourceTree = "<group>"; };
 		80CEBA96233839BF00FE10C6 /* error.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = error.mp3; sourceTree = "<group>"; };
+		80CEBA9C23385F0100FE10C6 /* TaDa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TaDa.mp3; sourceTree = "<group>"; };
 		ABEB6D9DEA31775C5B449824 /* Pods-FallingWords.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FallingWords.debug.xcconfig"; path = "Target Support Files/Pods-FallingWords/Pods-FallingWords.debug.xcconfig"; sourceTree = "<group>"; };
 		F6AB071601895EF24A648419 /* Pods-FallingWords.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FallingWords.release.xcconfig"; path = "Target Support Files/Pods-FallingWords/Pods-FallingWords.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -243,6 +245,7 @@
 		80CEBA93233839BF00FE10C6 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				80CEBA9C23385F0100FE10C6 /* TaDa.mp3 */,
 				80CEBA95233839BF00FE10C6 /* matching.mp3 */,
 				80CEBA96233839BF00FE10C6 /* error.mp3 */,
 			);
@@ -349,6 +352,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80CEBA9D23385F0100FE10C6 /* TaDa.mp3 in Resources */,
 				80CEBA5823377CA000FE10C6 /* LaunchScreen.storyboard in Resources */,
 				80CEBA99233839BF00FE10C6 /* matching.mp3 in Resources */,
 				80CEBA9A233839BF00FE10C6 /* error.mp3 in Resources */,

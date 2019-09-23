@@ -71,4 +71,8 @@ class GameViewModel {
         return gameManager.getDuration()
     }
     
+    func getScore() -> Int {
+        return score
+    }
+    
 }

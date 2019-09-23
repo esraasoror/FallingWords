@@ -10,6 +10,8 @@ import UIKit
 
 class GameViewController: UIViewController, GameViewModelDelegate {
 
+    @IBOutlet weak var finalScoreLabel: UILabel!
+    @IBOutlet weak var congratsView: UIView!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var englishLabel: UILabel!
@@ -24,6 +26,10 @@ class GameViewController: UIViewController, GameViewModelDelegate {
         viewModel?.startGame()
         totalTime = viewModel?.getTimer() ?? 60
         startTimer()
+        congratsView.layer.cornerRadius = 10
+        congratsView.layer.borderWidth = 1
+        congratsView.layer.borderColor = UIColor.black.cgColor
+        congratsView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,6 +37,9 @@ class GameViewController: UIViewController, GameViewModelDelegate {
     }
     
     @IBAction func cancelButtonClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func doneButtonClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -51,6 +60,33 @@ class GameViewController: UIViewController, GameViewModelDelegate {
     func endTimer() {
         countdownTimer.invalidate()
         viewModel?.endGame()
+        self.finalScoreLabel.text = "Your score is \(viewModel?.getScore() ?? 0)"
+        hideAnswers()
+        Utils.playMp3Sound("TaDa") {
+            print("game finished")
+        }
+        animateCongratsView()
+    }
+    
+    func hideAnswers() {
+        self.englishLabel.isHidden = true
+        for view in self.view.subviews {
+            if view.tag == 2 {
+                view.isHidden = true
+            }
+        }
+    }
+    
+    func animateCongratsView(){
+            self.congratsView.transform = CGAffineTransform(scaleX: 0, y: 0)
+                self.congratsView.isHidden = false
+                UIView.animate(withDuration: 1.0, animations: {
+                    self.congratsView.transform = CGAffineTransform(scaleX: 2, y: 2)
+                }, completion: { done in
+                    UIView.animate(withDuration: 0.5) {
+                        self.congratsView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    }
+                })
     }
     
     func timeFormatted(_ totalSeconds: Int) -> String {
@@ -61,6 +97,7 @@ class GameViewController: UIViewController, GameViewModelDelegate {
     
     func displayAnswer(_ answer: String) {
         DispatchQueue.main.async {
+            if self.totalTime != 0 {
             let label = UILabel(frame: CGRect(x: Int(arc4random_uniform(100)), y: 90, width: 300, height: 40))
             
             label.textAlignment = .center
@@ -79,6 +116,7 @@ class GameViewController: UIViewController, GameViewModelDelegate {
                     label.removeFromSuperview()
                 })
             })
+            }
         }
     }
     
@@ -101,12 +139,10 @@ extension GameViewController
         let touchLocation = touch.location(in: self.view)
 
         for subs in self.view.subviews{
-            print(subs)
             guard let ourLabel = subs as? UILabel, ourLabel.tag > 0, let presentation = ourLabel.layer.presentation(), let gameViewModel = self.viewModel else{
                 continue
             }
             if presentation.hitTest(touchLocation) != nil{
-                print("Touching")
                 if gameViewModel.isValidAnswer(ourLabel.text ?? ""){
                     Utils.playMp3Sound("matching") {
                         print("matching select")
