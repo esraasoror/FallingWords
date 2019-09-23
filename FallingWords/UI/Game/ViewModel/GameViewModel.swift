@@ -67,4 +67,8 @@ class GameViewModel {
         self.delegate?.updateScore(score)
     }
     
+    func getTimer() -> Int {
+        return gameManager.getDuration()
+    }
+    
 }

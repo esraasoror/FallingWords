@@ -53,11 +53,11 @@ class GameManager {
     func getDuration() -> Int{
         switch self.level {
         case .level1:
-            return 180
-        case .level2:
             return 120
-        case .level3:
+        case .level2:
             return 100
+        case .level3:
+            return 80
         }
     }
     

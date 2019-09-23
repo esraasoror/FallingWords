@@ -13,12 +13,17 @@ class GameViewController: UIViewController, GameViewModelDelegate {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var englishLabel: UILabel!
+    
     var viewModel: GameViewModel? = nil
-
+    var countdownTimer: Timer!
+    var totalTime = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel?.delegate = self
         viewModel?.startGame()
+        totalTime = viewModel?.getTimer() ?? 60
+        startTimer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,6 +32,31 @@ class GameViewController: UIViewController, GameViewModelDelegate {
     
     @IBAction func cancelButtonClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func startTimer() {
+        countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTime() {
+        timerLabel.text = "\(timeFormatted(totalTime))"
+        
+        if totalTime != 0 {
+            totalTime -= 1
+        } else {
+            endTimer()
+        }
+    }
+    
+    func endTimer() {
+        countdownTimer.invalidate()
+        viewModel?.endGame()
+    }
+    
+    func timeFormatted(_ totalSeconds: Int) -> String {
+        let seconds: Int = totalSeconds % 60
+        let minutes: Int = (totalSeconds / 60) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
     
     func displayAnswer(_ answer: String) {
