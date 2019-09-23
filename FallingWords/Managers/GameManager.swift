@@ -36,6 +36,7 @@ class GameManager {
                 answers.append(randomAnswer)
             }
         }
+        //to randomise the order of answers array
         answers.sort(by: {$0.english > $1.english})
     }
     
@@ -50,7 +51,7 @@ class GameManager {
         }
     }
     
-    func getDuration() -> Int{
+    func getGameDuration() -> Int{
         switch self.level {
         case .level1:
             return 120
@@ -58,6 +59,28 @@ class GameManager {
             return 100
         case .level3:
             return 80
+        }
+    }
+    
+    func getAnswersAnimationDuration() -> Int{
+        switch self.level {
+        case .level1:
+            return 10
+        case .level2:
+            return 6
+        case .level3:
+            return 3
+        }
+    }
+    
+    func getSleepDuration() -> UInt32{
+        switch self.level {
+        case .level1:
+            return 2
+        case .level2:
+            return 2
+        case .level3:
+            return 1
         }
     }
     

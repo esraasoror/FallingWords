@@ -41,10 +41,10 @@ class GameViewModel {
                 guard let view = self.delegate else {
                     return
                 }
-                sleep(2)
+                sleep(self.gameManager.getSleepDuration())
                 view.displayAnswer(answer.spanish)
             }
-            sleep(2)
+            sleep(self.gameManager.getSleepDuration())
             self.gameManager.intializeNextWord()
             self.startGame()
         }
@@ -68,11 +68,15 @@ class GameViewModel {
     }
     
     func getTimer() -> Int {
-        return gameManager.getDuration()
+        return gameManager.getGameDuration()
     }
     
     func getScore() -> Int {
         return score
+    }
+    
+    func getAnimationDuration() -> Int {
+        return gameManager.getAnswersAnimationDuration()
     }
     
 }

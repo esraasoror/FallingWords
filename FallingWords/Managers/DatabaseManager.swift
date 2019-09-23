@@ -62,7 +62,7 @@ class DatabaseManager: NSObject {
      */
     func geWrongTranslations(forEnglish english: String) -> [Word] {
         guard let realm = self.realm else { return [] }
-        let wordsList = realm.objects(Word.self).filter("english != '\(english)'")
+        let wordsList = realm.objects(Word.self).filter("english != \"\(english)\"")
         var allWords = [Word]()
         wordsList.forEach { word in
             allWords.append(word.clone())

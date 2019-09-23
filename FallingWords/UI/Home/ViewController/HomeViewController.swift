@@ -16,11 +16,11 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var level3Button: UIButton!
     
     // MARK: - private variables
-    private var homeViewControllerViewModel = HomeViewModel()
-
+    private var homeViewModel = HomeViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        homeViewControllerViewModel.downloadWords()
+        homeViewModel.downloadWords()
         setupButtonsStyle()
     }
     /**
@@ -41,12 +41,10 @@ class HomeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "level1" {
-            guard let viewController = segue.destination as? GameViewController else {
-                return
-            }
-            viewController.viewModel = GameViewModel(withLevel: .level1)
+        guard let viewController = segue.destination as? GameViewController else {
+            return
         }
+        viewController.viewModel = homeViewModel.getGameViewModel(forIndentifier: segue.identifier ?? "")
     }
 }
 

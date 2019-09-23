@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameViewController: UIViewController, GameViewModelDelegate {
+class GameViewController: UIViewController {
 
     @IBOutlet weak var finalScoreLabel: UILabel!
     @IBOutlet weak var congratsView: UIView!
@@ -24,16 +24,19 @@ class GameViewController: UIViewController, GameViewModelDelegate {
         super.viewDidLoad()
         viewModel?.delegate = self
         viewModel?.startGame()
-        totalTime = viewModel?.getTimer() ?? 60
         startTimer()
-        congratsView.layer.cornerRadius = 10
-        congratsView.layer.borderWidth = 1
-        congratsView.layer.borderColor = UIColor.black.cgColor
-        congratsView.isHidden = true
+        setupCongratsViewStyle()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    func setupCongratsViewStyle() {
+        congratsView.layer.cornerRadius = 10
+        congratsView.layer.borderWidth = 1
+        congratsView.layer.borderColor = UIColor.black.cgColor
+        congratsView.isHidden = true
     }
     
     @IBAction func cancelButtonClicked(_ sender: Any) {
@@ -43,7 +46,9 @@ class GameViewController: UIViewController, GameViewModelDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - timer handling methods
     func startTimer() {
+        totalTime = viewModel?.getTimer() ?? 60
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
     }
     
@@ -57,12 +62,18 @@ class GameViewController: UIViewController, GameViewModelDelegate {
         }
     }
     
+    func timeFormatted(_ totalSeconds: Int) -> String {
+        let seconds: Int = totalSeconds % 60
+        let minutes: Int = (totalSeconds / 60) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+    
     func endTimer() {
         countdownTimer.invalidate()
         viewModel?.endGame()
         self.finalScoreLabel.text = "Your score is \(viewModel?.getScore() ?? 0)"
         hideAnswers()
-        Utils.playMp3Sound("TaDa") {
+        Utils.playMp3Sound(Constants.Sounds.finish) {
             print("game finished")
         }
         animateCongratsView()
@@ -89,33 +100,30 @@ class GameViewController: UIViewController, GameViewModelDelegate {
                 })
     }
     
-    func timeFormatted(_ totalSeconds: Int) -> String {
-        let seconds: Int = totalSeconds % 60
-        let minutes: Int = (totalSeconds / 60) % 60
-        return String(format: "%02d:%02d", minutes, seconds)
-    }
-    
+}
+// MARK: - GameViewModelDelegate methods
+extension GameViewController: GameViewModelDelegate{
     func displayAnswer(_ answer: String) {
         DispatchQueue.main.async {
             if self.totalTime != 0 {
-            let label = UILabel(frame: CGRect(x: Int(arc4random_uniform(100)), y: 90, width: 300, height: 40))
-            
-            label.textAlignment = .center
-            label.textColor = UIColor.blue
-            label.font = UIFont(name: "Futura Meduim", size: 20)
-            label.text = answer
-            label.tag = 2
-            label.isUserInteractionEnabled = true
-
-            self.view.addSubview(label)
-            UIView.animate(withDuration: 10.0, delay: 0, options: .allowUserInteraction, animations: {
-                label.frame = CGRect(x: label.frame.origin.x, y: self.view.frame.height - 277, width: label.frame.width, height: label.frame.height)
-            }, completion: { (_) in
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
-                    label.isHidden = true
-                    label.removeFromSuperview()
+                let label = UILabel(frame: CGRect(x: Int(arc4random_uniform(100)), y: 90, width: 300, height: 40))
+                
+                label.textAlignment = .center
+                label.textColor = UIColor.blue
+                label.font = UIFont(name: "Futura Meduim", size: 20)
+                label.text = answer
+                label.tag = 2
+                label.isUserInteractionEnabled = true
+                
+                self.view.addSubview(label)
+                UIView.animate(withDuration: TimeInterval(self.viewModel?.getAnimationDuration() ?? 10), delay: 0, options: .allowUserInteraction, animations: {
+                    label.frame = CGRect(x: label.frame.origin.x, y: self.view.frame.height - 200, width: label.frame.width, height: label.frame.height)
+                }, completion: { (_) in
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+                        label.isHidden = true
+                        label.removeFromSuperview()
+                    })
                 })
-            })
             }
         }
     }
@@ -131,8 +139,9 @@ class GameViewController: UIViewController, GameViewModelDelegate {
         }
     }
 }
-extension GameViewController
-{
+
+// MARK: - touch handling method
+extension GameViewController {
     
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else{return}
@@ -144,11 +153,11 @@ extension GameViewController
             }
             if presentation.hitTest(touchLocation) != nil{
                 if gameViewModel.isValidAnswer(ourLabel.text ?? ""){
-                    Utils.playMp3Sound("matching") {
+                    Utils.playMp3Sound(Constants.Sounds.success) {
                         print("matching select")
                     }
                 } else {
-                    Utils.playMp3Sound("error") {
+                    Utils.playMp3Sound(Constants.Sounds.error) {
                         print("mismatching select")
                     }
                 }

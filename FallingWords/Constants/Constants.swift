@@ -23,4 +23,10 @@ class Constants {
         static let serverErrorMessage = "Server Error"
         static let noInternetErrorMessage = "No Internet Connection"
     }
+    // MARK: - Sounds CONSTANTS
+    class Sounds {
+        static let finish = "TaDa"
+        static let success = "matching"
+        static let error = "error"
+    }
 }

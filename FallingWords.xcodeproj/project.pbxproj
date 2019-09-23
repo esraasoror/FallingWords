@@ -29,6 +29,7 @@
 		80CEBA99233839BF00FE10C6 /* matching.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 80CEBA95233839BF00FE10C6 /* matching.mp3 */; };
 		80CEBA9A233839BF00FE10C6 /* error.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 80CEBA96233839BF00FE10C6 /* error.mp3 */; };
 		80CEBA9D23385F0100FE10C6 /* TaDa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 80CEBA9C23385F0100FE10C6 /* TaDa.mp3 */; };
+		80CEBAA02338D7DB00FE10C6 /* GameManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CEBA9F2338D7DB00FE10C6 /* GameManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		80CEBA95233839BF00FE10C6 /* matching.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = matching.mp3; sourceTree = "<group>"; };
 		80CEBA96233839BF00FE10C6 /* error.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = error.mp3; sourceTree = "<group>"; };
 		80CEBA9C23385F0100FE10C6 /* TaDa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TaDa.mp3; sourceTree = "<group>"; };
+		80CEBA9F2338D7DB00FE10C6 /* GameManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManagerTests.swift; sourceTree = "<group>"; };
 		ABEB6D9DEA31775C5B449824 /* Pods-FallingWords.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FallingWords.debug.xcconfig"; path = "Target Support Files/Pods-FallingWords/Pods-FallingWords.debug.xcconfig"; sourceTree = "<group>"; };
 		F6AB071601895EF24A648419 /* Pods-FallingWords.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FallingWords.release.xcconfig"; path = "Target Support Files/Pods-FallingWords/Pods-FallingWords.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,9 +124,7 @@
 				80CEBA7123377F0700FE10C6 /* Utils */,
 				80CEBA93233839BF00FE10C6 /* sounds */,
 				80CEBA4D23377C9D00FE10C6 /* AppDelegate.swift */,
-				80CEBA5123377C9E00FE10C6 /* Main.storyboard */,
 				80CEBA5423377CA000FE10C6 /* Assets.xcassets */,
-				80CEBA5623377CA000FE10C6 /* LaunchScreen.storyboard */,
 				80CEBA5923377CA000FE10C6 /* Info.plist */,
 			);
 			path = FallingWords;
@@ -135,6 +135,7 @@
 			children = (
 				80CEBA6423377CA000FE10C6 /* Info.plist */,
 				80CEBA80233781A700FE10C6 /* WordsDataTests.swift */,
+				80CEBA9F2338D7DB00FE10C6 /* GameManagerTests.swift */,
 			);
 			path = FallingWordsTests;
 			sourceTree = "<group>";
@@ -186,6 +187,7 @@
 		80CEBA822338106D00FE10C6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				80CEBA9E2338D77300FE10C6 /* Storyboards */,
 				80CEBA842338109D00FE10C6 /* Game */,
 				80CEBA832338107700FE10C6 /* Home */,
 			);
@@ -250,6 +252,15 @@
 				80CEBA96233839BF00FE10C6 /* error.mp3 */,
 			);
 			path = sounds;
+			sourceTree = "<group>";
+		};
+		80CEBA9E2338D77300FE10C6 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				80CEBA5123377C9E00FE10C6 /* Main.storyboard */,
+				80CEBA5623377CA000FE10C6 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		D18D58349531CCACD97585A5 /* Frameworks */ = {
@@ -454,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80CEBA81233781A700FE10C6 /* WordsDataTests.swift in Sources */,
+				80CEBAA02338D7DB00FE10C6 /* GameManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
